@@ -38,7 +38,7 @@ const Game = ({ name, released, image, id }) => {
 };
 
 const StyledDiv = styled(motion.div)`
-  box-shadow: 0px 1px 15px;
+  box-shadow: 0px 2px 15px 1px white;
   cursor: pointer;
   text-align: center;
   border-radius: 1rem;

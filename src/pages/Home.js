@@ -48,7 +48,7 @@ const Home = () => {
         )}
 
         <h1>Upcoming Games</h1>
-        <Games>
+        <Games className="games">
           {upcoming.map((game) => (
             <Game
               name={game.name}
@@ -91,7 +91,14 @@ const Home = () => {
 };
 
 const GameList = styled(motion.div)`
-  padding: 0rem 3rem;
+  padding: 0rem 2rem;
+  padding-top: 5rem;
+  @media only screen and (min-width: 320px) and (max-width: 580px) {
+    h1 {
+      font-size: 1.8rem;
+      margin-top: 3rem;
+    }
+  }
   h1 {
     padding: 5rem 0rem;
   }
@@ -103,6 +110,9 @@ const Games = styled(motion.div)`
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
+  @media only screen and (min-width: 320px) and (max-width: 580px) {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
 `;
 
 export default Home;

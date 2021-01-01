@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { imageResize } from "../util";
 import playstation from "../images/playstation.svg";
 import apple from "../images/apple.svg";
-import gamepad from "../images/gamepad.svg";
+// import gamepad from "../images/gamepad.svg";
 import nintendo from "../images/nintendo.svg";
 import steam from "../images/steam.svg";
 import xbox from "../images/xbox.svg";
@@ -49,7 +49,7 @@ const GameDetails = ({ pathID }) => {
       case "iOS":
         return apple;
       default:
-        return gamepad;
+        return "";
     }
   };
 
@@ -84,7 +84,7 @@ const GameDetails = ({ pathID }) => {
               <motion.img
                 layoutId={`image ${pathID}`}
                 src={imageResize(game.background_image, 1280)}
-                alt="Movie Name"
+                alt="Game Name"
               />
             </Media>
             <Description>
@@ -119,14 +119,19 @@ const CardShadow = styled(motion.div)`
 `;
 
 const Detail = styled(motion.div)`
-  width: 80%;
+  width: 50%;
   border-radius: 1rem;
   padding: 2rem 2rem;
-  background: white;
+  background: rgb(67, 67, 92);
   position: absolute;
-  left: 10%;
+  left: 25%;
   color: black;
   z-index: 10;
+  @media only screen and (min-width: 320px) and (max-width: 580px) {
+    display: block;
+    width: 80%;
+    left: 10%;
+  }
   img {
     width: 100%;
   }
@@ -136,11 +141,23 @@ const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  @media only screen and (min-width: 320px) and (max-width: 580px) {
+    display: inline-block;
+    h3 {
+      font-size: 1rem;
+    }
+    h2 {
+      font-size: 1.2rem;
+      word-wrap: break-word;
+    }
+  }
   h3 {
     padding: 0rem 0rem 1rem 0rem;
+    color: white;
   }
   h2 {
     margin: 0rem 0rem 1rem 0rem;
+    color: white;
   }
   img {
     width: 2.5rem;
@@ -156,8 +173,16 @@ const Info = styled(motion.div)`
 const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
+  @media only screen and (min-width: 320px) and (max-width: 580px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 0.5rem;
+  }
   img {
     margin-left: 3rem;
+    background-color: white;
+    border-radius: 0.5rem;
   }
 `;
 
@@ -170,13 +195,18 @@ const Media = styled(motion.div)`
 
 const Description = styled(motion.div)`
   margin: 1rem;
+  color: white;
+  @media only screen and (min-width: 320px) and (max-width: 580px) {
+    text-align: center;
+  }
 `;
 
 const Gallery = styled(motion.div)`
   h2 {
-    padding: 2rem 2rem;
+    padding: 2rem 0rem 0rem 0rem;
     text-align: center;
     font-size: 2rem;
+    color: white;
   }
   img {
     margin-top: 2rem;

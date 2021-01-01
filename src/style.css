@@ -1,0 +1,5 @@
+.nav.active {
+  background-color: rgb(67, 67, 92);
+  opacity: 0.9;
+  transition: all 0.5s ease-in-out;
+}

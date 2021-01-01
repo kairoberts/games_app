@@ -9,6 +9,16 @@ import { fadeIn } from "../animations";
 const Nav = () => {
   const dispatch = useDispatch();
   const [textInput, setTextInput] = useState("");
+  const [nav, setNav] = useState(false);
+
+  const changeBackground = () => {
+    if (window.scrollY >= 50) {
+      setNav(true);
+    } else {
+      setNav(false);
+    }
+  };
+  window.addEventListener("scroll", changeBackground);
 
   const inputHandler = (e) => {
     setTextInput(e.target.value);
@@ -26,7 +36,12 @@ const Nav = () => {
     });
   };
   return (
-    <StyledNav variants={fadeIn} initial="hidden" animate="show">
+    <StyledNav
+      className={nav ? "nav active" : <StyledNav />}
+      variants={fadeIn}
+      initial="hidden"
+      animate="show"
+    >
       <img onClick={clearSearch} src={logo} alt="KR Web Development" />
       <form className="search">
         <input value={textInput} onChange={inputHandler} type="text" />
@@ -43,12 +58,30 @@ export default Nav;
 const StyledNav = styled(motion.nav)`
   padding: 1rem 0rem;
   text-align: center;
+  position: fixed;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+  @media only screen and (min-width: 320px) and (max-width: 580px) {
+    height: 12rem;
+    display: block;
+    img {
+      left: 30%;
+    }
+    input {
+      position: absolute;
+      top: 55%;
+      right: 60%;
+    }
+    button {
+      position: absolute;
+      top: 50%;
+    }
+  }
   img {
     position: absolute;
-    top: 5;
-    left: 5;
-    width: 150px;
-    height: 80px;
+    width: 180px;
+    height: 90px;
+    object-fit: cover;
     cursor: pointer;
   }
   input {
@@ -56,18 +89,26 @@ const StyledNav = styled(motion.nav)`
     font-size: 1rem;
     padding: 0.5rem;
     border: none;
+    border-radius: 0.8rem;
     margin-top: 1rem;
     outline: none;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
   }
   button {
-    font-size: 1.3rem;
-    background: #00f7ff;
-    border: none;
-    padding: 1rem 1.5rem;
-    margin: 1rem;
+    font-weight: bold;
+    font-size: 1rem;
     cursor: pointer;
+    padding: 1rem 2rem;
     outline: none;
+    border: 2px solid rgb(216, 135, 81);
+    background-color: transparent;
+    color: white;
+    margin: 1rem;
+    border-radius: 1rem;
+    transition: all 0.5s ease;
+  }
+  button:hover {
+    background-color: rgb(216, 135, 81);
     color: black;
   }
 `;
